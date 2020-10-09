@@ -7,7 +7,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+ Download a Build Artifact:
+  uses: actions/download-artifact@v2.0.5
+  with:
+    # Artifact name
+    name: # optional
+    # Destination path
+    path: # optional
+build:
 
 
     runs-on: ubuntu-latest
