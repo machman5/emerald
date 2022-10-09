@@ -1,30 +1,54 @@
-name: Build & Publish Debug APK
-
-on:
- push:
-  branches:
-   - master
-   
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Make Gradle executable
-      run: chmod +x ./gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug
-    - name: Generate version.txt for Hub release
-      run: ./gradlew generateVersionTxt
-    - name: Releasing using Hub
-      uses: valley-fordham/action-release-debugapk@master
-      env:
-       GITHUB_TOKEN: ${{ secrets.TOKEN }}
-       APP_FOLDER: app
-       RELEASE_TITLE: New Build
+- name: Download artifact
+  id: download-artifact
+  uses: dawidd6/action-download-artifact@v2
+  with:
+    # Optional, GitHub token, a Personal Access Token with `public_repo` scope if needed
+    # Required, if the artifact is from a different repo
+    # Required, if the repo is private a Personal Access Token with `repo` scope is needed
+    github_token: ${{secrets.GITHUB_TOKEN}}
+    # Optional, workflow file name or ID
+    # If not specified, will be inferred from run_id (if run_id is specified), or will be the current workflow
+    workflow: workflow_name.yml
+    # Optional, the status or conclusion of a completed workflow to search for
+    # Can be one of a workflow conclusion:
+    #   "failure", "success", "neutral", "cancelled", "skipped", "timed_out", "action_required"
+    # Or a workflow status:
+    #   "completed", "in_progress", "queued"
+    # Use the empty string ("") to ignore status or conclusion in the search
+    workflow_conclusion: success
+    # Optional, will get head commit SHA
+    pr: ${{github.event.pull_request.number}}
+    # Optional, no need to specify if PR is
+    commit: ${{github.event.pull_request.head.sha}}
+    # Optional, will use the specified branch. Defaults to all branches
+    branch: master
+    # Optional, defaults to all types
+    event: push
+    # Optional, will use specified workflow run
+    run_id: 1122334455
+    # Optional, run number from the workflow
+    run_number: 34
+    # Optional, uploaded artifact name,
+    # will download all artifacts if not specified
+    # and extract them into respective subdirectories
+    # https://github.com/actions/download-artifact#download-all-artifacts
+    name: artifact_name
+    # Optional, a directory where to extract artifact(s), defaults to the current directory
+    path: extract_here
+    # Optional, defaults to current repo
+    repo: ${{ github.repository }}
+    # Optional, check the workflow run to whether it has an artifact
+    # then will get the last available artifact from the previous workflow
+    # default false, just try to download from the last one
+    check_artifacts:  false
+    # Optional, search for the last workflow run whose stored an artifact named as in `name` input
+    # default false
+    search_artifacts: false
+    # Optional, choose to skip unpacking the downloaded artifact(s)
+    # default false
+    skip_unpack: false
+    # Optional, choose how to exit the action if no artifact is found
+    # can be one of:
+    #  "fail", "warn", "ignore"
+    # default fail
+    if_no_artifact_found: fail
