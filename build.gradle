@@ -9,11 +9,6 @@ buildscript {
     }
 }
 
-task generateVersionTxt {
-    doLast {
-        file("./version.txt").text = android.defaultConfig.versionName
-    }
-}
 
 allprojects {
     repositories {
