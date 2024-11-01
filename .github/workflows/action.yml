@@ -5,5 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: result 
-      uses: MichaelMelena/list-artifacts@v1
+      uses: machman5/list-artifacts@v1
     - run: echo '${{ steps.result.outputs.artifacts }}'
