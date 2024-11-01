@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="glass_app_version" translatable="false">1.0.2</string>
+	<string name="glass_app_version" translatable="false">1.0.3</string>
 	<string name="glass_text">Emerald Launcher (v%s)
 \n
-\nCopyright 2017-2019 Anri Dellal
+\nCopyright 2017-2024 Anri Dellal
 \n
 \nLicensed under GPL-v3.0-only
 \nWant to help? Report bugs and submit suggestions via GitHub (https://www.github.com/HenriDellal/emerald) or Google Play listing(http://play.google.com/details?id=ru.henridellal.emerald )
