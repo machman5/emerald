@@ -1,4 +1,3 @@
-apk:
     name: Generate APK
     runs-on: ubuntu-22.04
 
