@@ -1,4 +1,4 @@
-- name: Download multiple artifacts
+  name: Download multiple artifacts
   uses: marcofaggian/action-download-multiple-artifacts@v1
   with:
     # Required, uploaded artifact names,
