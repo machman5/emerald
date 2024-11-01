@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 35
+    compileSdkVersion 34
     buildToolsVersion "34.0.0"
 
     defaultConfig {
         applicationId "ru.henridellal.emerald"
         minSdkVersion 4
-        targetSdkVersion 26
+        targetSdkVersion 34
     }
 
     lintOptions {
