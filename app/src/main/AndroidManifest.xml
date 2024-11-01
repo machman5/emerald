@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      android:versionCode="43"
+      android:versionCode="44"
 	  android:versionName="@string/glass_app_version" package="ru.henridellal.emerald"
       >
 
-     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="28"/>
+     <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="24"/>
      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
      <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -38,7 +38,8 @@
                   android:configChanges="orientation|keyboardHidden|screenSize"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
                   android:theme="@style/AppTheme.Default"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+		  android:exported="true">
 			<intent-filter>
                 <action android:name="ru.henridellal.emerald.open_menu" />
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +49,8 @@
             </intent-filter>
        
         </activity>
-        <receiver android:name=".receiver.PackageStateChangedReceiver">
+        <receiver android:name=".receiver.PackageStateChangedReceiver"
+		  android:exported="true">
         	<intent-filter>
         	<action android:name="android.intent.action.PACKAGE_INSTALL"/>
         	<action android:name="android.intent.action.PACKAGE_ADDED"/>
@@ -61,7 +63,7 @@
         <!--<service android:name=".PackageService"/>-->
         <receiver android:name=".receiver.InstallShortcutReceiver"
         	android:permission="com.android.launcher.permission.INSTALL_SHORTCUT"
-        	>
+        	android:exported="true">
             <intent-filter>
                 <action android:name="com.android.launcher.action.INSTALL_SHORTCUT" />
                 <action android:name="com.android.launcher.action.CREATE_SHORTCUT" />
